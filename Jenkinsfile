@@ -1,4 +1,10 @@
 node{
+    environment 
+    {
+    registry = "prashantmenon82/ecommdemo"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    }
 
     stage('SCM Checkout')
     {
@@ -12,10 +18,8 @@ node{
     }
     stage('PUSH image to Docker Hub')
     {
-        withCredentials([string(credentialsId: 'DockerHubPassword', variable: 'DHPWD')]) 
-        {
-            sh "docker login -u prashantmenon82 --password-stdin ${DHPWD}"
+        docker.withRegistry('', 'dockerhub') {
+            sh 'docker push prashantmenon82/ecommdemo'
         }
-        sh 'docker push prashantmenon82/ecommdemo'
     }
 }
