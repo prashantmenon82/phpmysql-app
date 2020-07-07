@@ -14,8 +14,8 @@ node{
     {
         withCredentials([string(credentialsId: 'DockerHubPassword', variable: 'DHPWD')]) 
         {
-            sh "docker login -u vardhanns -p ${DHPWD}"
+            sh "docker login -u prashantmenon82 -p ${DHPWD}"
         }
-        sh 'docker push vardhanns/phpmysql_app'
+        sh 'docker push prashantmenon82/ecommdemo'
     }
 }
